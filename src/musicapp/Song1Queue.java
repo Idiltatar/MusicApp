@@ -39,7 +39,15 @@ public class Song1Queue implements Song1Interface{
      // return the rear element of the queue as a string, or null if the queue is empty.
     public Object dequeue() {
         if (theQueue.size() > 0) {
-            return theQueue.remove((theQueue.size())-1).toString();
+            return theQueue.remove((theQueue.size())-1);
+        } else {
+            return null;
+        }
+    }
+    // 
+     public Object  peek() {
+        if (theQueue.size() > 0) {
+            return theQueue.get((theQueue.size())-1);
         } else {
             return null;
         }

@@ -19,4 +19,6 @@ public interface Song1Interface {
     public void enqueue(Object newItem);
 
     public Object dequeue();
+    
+     public Object peek();
 }
