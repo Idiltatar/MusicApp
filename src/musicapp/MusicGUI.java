@@ -4,6 +4,7 @@
  */
 package musicapp;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,14 +19,14 @@ public class MusicGUI extends javax.swing.JFrame {
     private Song1Interface mySong;
     private PlaylistManagerInterface pM1;
     private PlaylistManagerInterface pM2;
-    private PlaylistManagerInterface allS;
+   
   
     public MusicGUI() {
         initComponents();
         mySong=new Song1Queue();
         pM1=new PlaylistManager1();
         pM2= new PlaylistManager2();
-        allS= new Allsong();
+   
     }
 
     
@@ -44,12 +45,12 @@ public class MusicGUI extends javax.swing.JFrame {
         size2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         Display = new javax.swing.JTextArea();
-        Allsong = new javax.swing.JButton();
-        delete3 = new javax.swing.JButton();
+        addplaylist = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        Add.setText("Add");
+        Add.setText("save song ");
         Add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AddActionPerformed(evt);
@@ -116,19 +117,14 @@ public class MusicGUI extends javax.swing.JFrame {
         Display.setRows(5);
         jScrollPane1.setViewportView(Display);
 
-        Allsong.setText("All song");
-        Allsong.addActionListener(new java.awt.event.ActionListener() {
+        addplaylist.setText("Add to playlist");
+        addplaylist.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AllsongActionPerformed(evt);
+                addplaylistActionPerformed(evt);
             }
         });
 
-        delete3.setText("delet 3");
-        delete3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                delete3ActionPerformed(evt);
-            }
-        });
+        jButton1.setText("jButton1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -137,19 +133,16 @@ public class MusicGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(Delete1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(61, 61, 61)
-                            .addComponent(Delete2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(delete3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(Playlist1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(52, 52, 52)
-                            .addComponent(Playlist2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(57, 57, 57)
-                            .addComponent(Allsong, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Delete1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(61, 61, 61)
+                        .addComponent(Delete2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(Playlist1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52)
+                        .addComponent(Playlist2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(78, 78, 78)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(Search1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -158,34 +151,41 @@ public class MusicGUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(size2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(search2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addContainerGap(92, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Add)
-                .addGap(68, 68, 68))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(addplaylist, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Add, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(62, 62, 62))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
-                        .addComponent(Add)))
-                .addGap(42, 42, 42)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Playlist1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Playlist2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Allsong, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(31, 31, 31)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(80, 80, 80)
+                                .addComponent(Add)
+                                .addGap(18, 18, 18)
+                                .addComponent(addplaylist)))
+                        .addGap(42, 42, 42)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Playlist1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Playlist2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(41, 41, 41)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Delete1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Delete2)
-                    .addComponent(delete3))
+                    .addComponent(Delete2))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Search1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -236,11 +236,12 @@ public class MusicGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_size1ActionPerformed
 
     private void Playlist1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Playlist1ActionPerformed
-        Object song1=mySong.dequeue();
-        if(song1!=null){
-            Display.append("Song :"+song1.toString()+"added \n");
-            pM1.add(song1);
-        }
+       ArrayList<Node> list = pM1.getAsList();
+        for (int i = 0; i < list.size(); i++) {
+        Node node = list.get(i);
+         Display.append("Song :"+node.toString()+"\n");
+}
+        
     }//GEN-LAST:event_Playlist1ActionPerformed
 
     private void Delete2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Delete2ActionPerformed
@@ -259,27 +260,19 @@ public class MusicGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_search2ActionPerformed
 
     private void Playlist2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Playlist2ActionPerformed
-        Object song1=mySong.dequeue();
-        if(song1!=null){
-            Display.append("Song :"+song1.toString()+"added \n");
-            pM2.add(song1);
-        }
+        ArrayList<Node> list = pM2.getAsList();
+        for (int i = 0; i < list.size(); i++) {
+        Node node = list.get(i);      
+        Display.append("Song : " + node.toString() + "\n");
+}
     }//GEN-LAST:event_Playlist2ActionPerformed
 
-    private void delete3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete3ActionPerformed
-       int delete=Integer.parseInt(JOptionPane.showInputDialog(null,"enter the song u want to delete: "));
-        Display.append(allS.get(delete).toString()+"\n");
-        allS.remove(delete);
-    }//GEN-LAST:event_delete3ActionPerformed
+    private void addplaylistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addplaylistActionPerformed
 
-    private void AllsongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AllsongActionPerformed
-         Object song1=mySong.dequeue();
-         if(song1!=null){
-        Display.append("Song :"+song1.toString()+"added \n");
-        allS.add(song1);
-    }  
-
-    }//GEN-LAST:event_AllsongActionPerformed
+       Song1 song = (Song1) mySong.backElement();
+      if (song.getGenre().equals("jazz")) pM1.add(song.getSong());
+      else pM2.add(song.getSong());
+    }//GEN-LAST:event_addplaylistActionPerformed
 
     /**
      * @param args the command line arguments
@@ -319,14 +312,14 @@ public class MusicGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Add;
-    private javax.swing.JButton Allsong;
     private javax.swing.JButton Delete1;
     private javax.swing.JButton Delete2;
     private javax.swing.JTextArea Display;
     private javax.swing.JButton Playlist1;
     private javax.swing.JButton Playlist2;
     private javax.swing.JButton Search1;
-    private javax.swing.JButton delete3;
+    private javax.swing.JButton addplaylist;
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton search2;
     private javax.swing.JButton size1;

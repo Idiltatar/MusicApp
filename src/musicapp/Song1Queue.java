@@ -44,20 +44,13 @@ public class Song1Queue implements Song1Interface{
             return null;
         }
     }
-    // 
-     public Object  peek() {
-        if (theQueue.size() > 0) {
-            return theQueue.get((theQueue.size())-1);
-        } else {
-            return null;
-        }
-    }
+   
    //   Returns a string representation of the queue. and return  a string representation of the queue.
     public String toString() {
         return theQueue.toString();
     }
     
-    //playlistleri atiyor 
+    //  Returns the last element of the queue, or null if the queue is empty
     public Object backElement() {
         if (theQueue.size() > 0) {
             return theQueue.get(theQueue.size()-1);
