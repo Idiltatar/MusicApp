@@ -21,4 +21,6 @@ public interface Song1Interface {
     public Object dequeue();
     
      public Object peek();
+     
+     public Object backElement();
 }

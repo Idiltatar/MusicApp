@@ -4,6 +4,8 @@
  */
 package musicapp;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author idiltatar
@@ -83,6 +85,16 @@ public class PlaylistManager2 implements PlaylistManagerInterface{
             System.out.println(aNode.toString());
             aNode = aNode.getNext();
         }
+        
+    }
+    public ArrayList<Node> getAsList() {
+         ArrayList<Node> nodes = new ArrayList<>();
+         Node aNode = head;
+         while (aNode != null) {
+            nodes.add(aNode);
+            aNode = aNode.getNext();
+        }
+         return nodes;
     }
 
     @Override

@@ -57,5 +57,13 @@ public class Song1Queue implements Song1Interface{
         return theQueue.toString();
     }
     
+    //playlistleri atiyor 
+    public Object backElement() {
+        if (theQueue.size() > 0) {
+            return theQueue.get(theQueue.size()-1);
+        } else {
+            return null;
+        }
+    }
 
 }

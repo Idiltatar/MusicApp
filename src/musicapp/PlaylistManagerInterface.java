@@ -4,6 +4,8 @@
  */
 package musicapp;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author idiltatar
@@ -22,6 +24,8 @@ public interface PlaylistManagerInterface {
     public void printList();
 
     public void append(String string);
+    
+    public ArrayList<Node>getAsList();
     
     
     
