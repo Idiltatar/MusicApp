@@ -18,6 +18,7 @@ public class MusicGUI extends javax.swing.JFrame {
     private Song1Interface mySong;
     private PlaylistManagerInterface pM1;
     private PlaylistManagerInterface pM2;
+    private Object jTextAreaDisplay;
     public MusicGUI() {
         initComponents();
         mySong=new Song1Queue();
@@ -41,6 +42,9 @@ public class MusicGUI extends javax.swing.JFrame {
         size2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         Display = new javax.swing.JTextArea();
+        likebuton = new javax.swing.JButton();
+        classicbuton = new javax.swing.JButton();
+        jazzbuton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -111,6 +115,27 @@ public class MusicGUI extends javax.swing.JFrame {
         Display.setRows(5);
         jScrollPane1.setViewportView(Display);
 
+        likebuton.setText("song you like ");
+        likebuton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                likebutonActionPerformed(evt);
+            }
+        });
+
+        classicbuton.setText("Playlist for classics");
+        classicbuton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                classicbutonActionPerformed(evt);
+            }
+        });
+
+        jazzbuton.setText("Playlist for jazz");
+        jazzbuton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jazzbutonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -142,14 +167,30 @@ public class MusicGUI extends javax.swing.JFrame {
                         .addComponent(Add))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(42, 42, 42)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(166, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(classicbuton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(likebuton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jazzbuton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                .addContainerGap(121, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(76, 76, 76)
+                        .addComponent(likebuton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(classicbuton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jazzbuton)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -237,6 +278,21 @@ public class MusicGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_Playlist2ActionPerformed
 
+    private void likebutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_likebutonActionPerformed
+        // TODO add your handling code here:
+         jTextAreaDisplay.append("There are " + song1.size() + " customers in the queue\n");
+    }//GEN-LAST:event_likebutonActionPerformed
+
+    private void classicbutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classicbutonActionPerformed
+        // TODO add your handling code here:
+         jTextAreaDisplay.append("There are " + myQueue.size() + " customers in the queue\n");
+    }//GEN-LAST:event_classicbutonActionPerformed
+
+    private void jazzbutonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jazzbutonActionPerformed
+        // TODO add your handling code here:
+         jTextAreaDisplay.append("There are " + myQueue.size() + " customers in the queue\n");
+    }//GEN-LAST:event_jazzbutonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -281,7 +337,10 @@ public class MusicGUI extends javax.swing.JFrame {
     private javax.swing.JButton Playlist1;
     private javax.swing.JButton Playlist2;
     private javax.swing.JButton Search1;
+    private javax.swing.JButton classicbuton;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jazzbuton;
+    private javax.swing.JButton likebuton;
     private javax.swing.JButton search2;
     private javax.swing.JButton size1;
     private javax.swing.JButton size2;
