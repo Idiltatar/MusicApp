@@ -19,8 +19,11 @@ public interface PlaylistManagerInterface {
 
     public void add(Object theElement);
 
-
     public void printList();
+
+    public void append(String string);
+    
+    
     
     
 }

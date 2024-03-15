@@ -8,13 +8,13 @@ package musicapp;
  *
  * @author idiltatar
  */
-public class PlaylistManager2 implements PlaylistManagerInterface{
-     private Node head;
+public class Allsong implements PlaylistManagerInterface {
+       private Node head;
     private int iSize;
     private Node curNode;
     private Node prevNode;
 
-    public PlaylistManager2() {
+    public Allsong() {
         head = null;
         iSize = 0;
         curNode = null;
@@ -89,5 +89,4 @@ public class PlaylistManager2 implements PlaylistManagerInterface{
     public void append(String string) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
 }
