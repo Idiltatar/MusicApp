@@ -20,7 +20,7 @@ public class PlaylistManager2 implements PlaylistManagerInterface{
         curNode = null;
         prevNode = null;
     }
-
+       //Checks to see if the playlist is empty.
     public boolean isEmpty() {
         if (iSize == 0) {
             return true;
@@ -29,13 +29,13 @@ public class PlaylistManager2 implements PlaylistManagerInterface{
         }
 
     }
-
+   //Returns the size of the playlist. and retrun list 
     public int size() {
         return iSize;
     }
 
 
-
+//Adds a new item and links it to the end of the list.
     public void add(Object element) {
         Node newNode = new Node(element, null);
         if (head == null) {
@@ -47,12 +47,13 @@ public class PlaylistManager2 implements PlaylistManagerInterface{
         iSize = iSize + 1;
     }
 
-   //
+   //Returns the item at a specific location.
+
     public Object get(int iIndex) {
         setCurrent(iIndex);
         return curNode.toString();
     }
-
+    //Removes an item from a specific location from the list.
     public void remove(int iIndex) {
     
         if (iIndex == 1) {
@@ -64,7 +65,7 @@ public class PlaylistManager2 implements PlaylistManagerInterface{
 
         iSize = iSize - 1;
     }
-
+   //A special helper that adjusts the current and previous nodes
     private void setCurrent(int index) {
    
         int iCount;
@@ -75,7 +76,7 @@ public class PlaylistManager2 implements PlaylistManagerInterface{
             curNode = curNode.getNext();
         }
     }
-                             
+          //Prints all the items of the list on the screen.                   
     public void printList() {
         Node aNode = head;
         while (aNode != null) {
