@@ -22,7 +22,8 @@ public class Song1Queue implements Song1Interface{
     public int size() {
         return theQueue.size();
     }
-
+    
+  // Removes and returns the rear element of the queue.
     public Object frontElement() {
         if (theQueue.size() > 0) {
             return theQueue.get(0);
@@ -30,11 +31,12 @@ public class Song1Queue implements Song1Interface{
             return null;
         }
     }
-
+   // add a new item to rear of queue
     public void enqueue(Object newItem) {
         theQueue.add((Song1) newItem);
     }
 
+     // return the rear element of the queue as a string, or null if the queue is empty.
     public Object dequeue() {
         if (theQueue.size() > 0) {
             return theQueue.remove((theQueue.size())-1).toString();
@@ -42,7 +44,7 @@ public class Song1Queue implements Song1Interface{
             return null;
         }
     }
-
+   //   Returns a string representation of the queue. and return  a string representation of the queue.
     public String toString() {
         return theQueue.toString();
     }
