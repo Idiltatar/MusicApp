@@ -19,6 +19,12 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JRadioButtonMenuItem" name="jRadioButtonMenuItem1">
+      <Properties>
+        <Property name="selected" type="boolean" value="true"/>
+        <Property name="text" type="java.lang.String" value="jRadioButtonMenuItem1"/>
+      </Properties>
+    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
@@ -98,10 +104,12 @@
                           <Component id="Allsong" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="Delete1" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
-                          <Component id="Delete2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="size3" alignment="1" min="-2" pref="23" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="Delete1" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                              <Component id="Delete2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -203,6 +211,8 @@
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
+            <Property name="enabled" type="boolean" value="false"/>
+            <Property name="focusable" type="boolean" value="false"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -217,7 +227,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="Allsong">
       <Properties>
-        <Property name="text" type="java.lang.String" value="All Song "/>
+        <Property name="text" type="java.lang.String" value="All Songs"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AllsongActionPerformed"/>
@@ -225,7 +235,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="size3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="size3"/>
+        <Property name="text" type="java.lang.String" value="Size 3"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="size3ActionPerformed"/>
@@ -233,7 +243,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="search3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="search3"/>
+        <Property name="text" type="java.lang.String" value="Search 3"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="search3ActionPerformed"/>
