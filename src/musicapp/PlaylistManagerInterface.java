@@ -4,6 +4,7 @@
  */
 package musicapp;
 
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /**
@@ -26,6 +27,10 @@ public interface PlaylistManagerInterface {
     public void append(String string);
     
     public ArrayList<Node>getAsList();
+
+    public int search(String song);
+
+    public void addActionListener(ActionListener actionListener);
     
     
     

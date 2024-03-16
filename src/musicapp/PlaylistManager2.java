@@ -4,6 +4,7 @@
  */
 package musicapp;
 
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /**
@@ -11,7 +12,7 @@ import java.util.ArrayList;
  * @author idiltatar
  */
 public class PlaylistManager2 implements PlaylistManagerInterface{
-     private Node head;
+   private Node head;
     private int iSize;
     private Node curNode;
     private Node prevNode;
@@ -22,7 +23,7 @@ public class PlaylistManager2 implements PlaylistManagerInterface{
         curNode = null;
         prevNode = null;
     }
-       //Checks to see if the playlist is empty.
+
     public boolean isEmpty() {
         if (iSize == 0) {
             return true;
@@ -31,75 +32,102 @@ public class PlaylistManager2 implements PlaylistManagerInterface{
         }
 
     }
-   //Returns the size of the playlist. and retrun list 
+
     public int size() {
         return iSize;
     }
 
-
-//Adds a new item and links it to the end of the list.
     public void add(Object element) {
         Node newNode = new Node(element, null);
         if (head == null) {
             head = newNode;
+            curNode = head;
         } else {
-            setCurrent(iSize);
             curNode.setNext(newNode);
+            setCurrent(iSize);
         }
         iSize = iSize + 1;
     }
 
-   //Returns the item at a specific location.
+    public int search(String song) {
+        Node currentNode = head;
+        int index = 0;
+
+        // Iterate through the list until the end
+        while (currentNode != null) {
+            // Check the song title
+            if (currentNode.toString().equals(song)) {
+                // Song title found, return the index
+                return index;
+            }
+            // Move to the next node
+            currentNode = currentNode.getNext();
+            // Increment the index
+            index++;
+        }
+        // Song title not found, return -1
+        return -1; 
+    }
 
     public Object get(int iIndex) {
         setCurrent(iIndex);
-        return curNode.toString();
+        return curNode;
     }
-    //Removes an item from a specific location from the list.
-    public void remove(int iIndex) {
-    
-        if (iIndex == 1) {
-            head = head.getNext();
-        } else {
-            setCurrent(iIndex);
-            prevNode.setNext(curNode.getNext());
-        }
 
-        iSize = iSize - 1;
+    public void remove(int iIndex) {
+        if (iIndex < 1 || iIndex > iSize) {
+            // not a valid index
+            return;
+        }
+        if (iIndex == 1) {
+            // head
+            head = head.getNext();
+            iSize--;
+            return;
+        }
+        setCurrent(iIndex - 1);
+        // update the previous node's next reference to skip the current node
+        prevNode.setNext(curNode.getNext());
+        iSize--;
     }
-   //A special helper that adjusts the current and previous nodes
+
     private void setCurrent(int index) {
-   
         int iCount;
         prevNode = null;
         curNode = head;
-        for (iCount = 1; iCount < index; iCount++) {
+        for (iCount = 1; iCount <= index; iCount++) {
             prevNode = curNode;
             curNode = curNode.getNext();
         }
     }
-          //Prints all the items of the list on the screen.                   
+
     public void printList() {
         Node aNode = head;
         while (aNode != null) {
             System.out.println(aNode.toString());
             aNode = aNode.getNext();
         }
-        
     }
+
     public ArrayList<Node> getAsList() {
-         ArrayList<Node> nodes = new ArrayList<>();
-         Node aNode = head;
-         while (aNode != null) {
+        ArrayList<Node> nodes = new ArrayList<>();
+        Node aNode = head;
+        while (aNode != null) {
             nodes.add(aNode);
             aNode = aNode.getNext();
         }
-         return nodes;
+        return nodes;
     }
 
     @Override
     public void append(String string) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet.");
+
     }
-    
+
+    @Override
+    public void addActionListener(ActionListener actionListener) {
+        throw new UnsupportedOperationException("Not supported yet."); 
+    }
+
 }

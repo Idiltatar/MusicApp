@@ -39,7 +39,7 @@ public class Song1Queue implements Song1Interface{
      // return the rear element of the queue as a string, or null if the queue is empty.
     public Object dequeue() {
         if (theQueue.size() > 0) {
-            return theQueue.remove((theQueue.size())-1);
+            return theQueue.remove(0);
         } else {
             return null;
         }
@@ -50,6 +50,7 @@ public class Song1Queue implements Song1Interface{
         return theQueue.toString();
     }
     
+    
     //  Returns the last element of the queue, or null if the queue is empty
     public Object backElement() {
         if (theQueue.size() > 0) {
@@ -57,6 +58,21 @@ public class Song1Queue implements Song1Interface{
         } else {
             return null;
         }
+    }
+    
+    // Returns all elements of the queue
+
+    public ArrayList<Object> getAsList() {
+        ArrayList<Object> list = new ArrayList<>();
+        for (int i = 0; i < size(); i++) {
+            list.add(i, this.theQueue.get(i));
+        }
+        return list;
+    }
+
+    @Override
+    public String search(String song) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

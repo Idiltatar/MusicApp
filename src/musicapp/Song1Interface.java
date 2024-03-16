@@ -4,6 +4,8 @@
      */
 package musicapp;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author idiltatar
@@ -21,4 +23,8 @@ public interface Song1Interface {
     public Object dequeue();
        
      public Object backElement();
+     
+     public String search(String song);
+     
+     public ArrayList<Object>getAsList();
 }
