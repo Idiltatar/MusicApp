@@ -38,6 +38,7 @@ public class MusicGUI extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
         Search1 = new javax.swing.JButton();
         Delete1 = new javax.swing.JButton();
         Playlist1 = new javax.swing.JButton();
@@ -57,6 +58,9 @@ public class MusicGUI extends javax.swing.JFrame {
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane2.setViewportView(jTextArea1);
+
+        jRadioButtonMenuItem1.setSelected(true);
+        jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -118,6 +122,8 @@ public class MusicGUI extends javax.swing.JFrame {
 
         Display.setColumns(20);
         Display.setRows(5);
+        Display.setEnabled(false);
+        Display.setFocusable(false);
         jScrollPane1.setViewportView(Display);
 
         addplaylist.setText("Add to playlist");
@@ -127,21 +133,21 @@ public class MusicGUI extends javax.swing.JFrame {
             }
         });
 
-        Allsong.setText("All Song ");
+        Allsong.setText("All Songs");
         Allsong.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AllsongActionPerformed(evt);
             }
         });
 
-        size3.setText("size3");
+        size3.setText("Size 3");
         size3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 size3ActionPerformed(evt);
             }
         });
 
-        search3.setText("search3");
+        search3.setText("Search 3");
         search3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 search3ActionPerformed(evt);
@@ -203,10 +209,11 @@ public class MusicGUI extends javax.swing.JFrame {
                             .addComponent(Playlist2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Allsong, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Delete1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Delete2)
-                            .addComponent(size3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(size3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(Delete1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Delete2)))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(Search1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -228,8 +235,7 @@ public class MusicGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Search1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Search1ActionPerformed
-       int search=Integer.parseInt(JOptionPane.showInputDialog(null,"Enter the position of the song"));
-       Display.append(pM1.get(search).toString()+"\n");
+
        if (pM1.isEmpty()) {
             Display.append("Jazz playlist is empty\n");
             return;
@@ -252,8 +258,8 @@ public class MusicGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_Search1ActionPerformed
 
     private void Delete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Delete1ActionPerformed
-        if (pM2.isEmpty()) {
-            Display.append("Classics playlist is empty\n");
+        if (pM1.isEmpty()) {
+            Display.append("Jazz playlist is empty\n");
             return;
         }
         String song = "";
@@ -264,12 +270,12 @@ public class MusicGUI extends javax.swing.JFrame {
         if (song == null) {
             return; // canceled by user
         }// search the song in jazz playlist
-        int index = pM2.search(song);
+        int index = pM1.search(song);
         if (index == -1) {
-            Display.append("Song " + song + " not found in classics playlist\n");
+            Display.append("Song " + song + " not found in Jazz playlist\n");
         } else {
-            pM2.remove(index + 1);
-            Display.append("Song " + song + " removed from classics playlist" + "\n");
+            pM1.remove(index + 1);
+            Display.append("Song " + song + " removed from Jazz playlist" + "\n");
         }
     }//GEN-LAST:event_Delete1ActionPerformed
 
@@ -280,9 +286,14 @@ public class MusicGUI extends javax.swing.JFrame {
 
     private void Playlist1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Playlist1ActionPerformed
        ArrayList<Node> list = pM1.getAsList();
-        for (int i = 0; i < list.size(); i++) {
-        Node node = list.get(i);
-         Display.append("Song :"+node.toString()+"\n");
+         int listSize=list.size();
+        if (listSize == 0) {
+        Display.append("Jazz playlist empty\n");
+        return;
+    }
+        for (int i = 0; i < listSize; i++) {
+        Node node = list.get(i);      
+        Display.append("Song : " + node.toString() + "\n");
 }
  
     }//GEN-LAST:event_Playlist1ActionPerformed
@@ -315,10 +326,8 @@ public class MusicGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_size2ActionPerformed
 
     private void search2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search2ActionPerformed
-       int search=Integer.parseInt(JOptionPane.showInputDialog(null,"Enter the position of the song"));
-       Display.append(pM2.get(search).toString()+"\n");
-       if (pM1.isEmpty()) {
-            Display.append("Jazz playlist is empty\n");
+         if (pM2.isEmpty()) {
+            Display.append("classic playlist is \n");
             return;
         }
         String song = "";
@@ -331,20 +340,20 @@ public class MusicGUI extends javax.swing.JFrame {
         }// search the song in jazz playlist
         int index = pM2.search(song);
         if (index == -1) {
-            Display.append("Song " + song + " not found in jazz playlist\n");
+            Display.append("Song " + song + " not found in classic playlist\n");
         } else {
             String found = pM2.get(index).toString();
-            Display.append("Found song " + found + " in jazz playlist" + "\n");
+            Display.append("Found song " + found + " in classic playlist" + "\n");
         }
     }//GEN-LAST:event_search2ActionPerformed
 
     private void Playlist2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Playlist2ActionPerformed
         ArrayList<Node> list = pM2.getAsList();
-        int listSize = 0;
+        int listSize=list.size();
         if (listSize == 0) {
-        Display.append("Jazz playlist is empty\n");
-            return;
-        }
+        Display.append("Classics  empty\n");
+        return;
+    }
         for (int i = 0; i < listSize; i++) {
         Node node = list.get(i);      
         Display.append("Song : " + node.toString() + "\n");
@@ -353,10 +362,9 @@ public class MusicGUI extends javax.swing.JFrame {
 
     private void addplaylistActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addplaylistActionPerformed
     if (mySong.isEmpty()) {
-        Display.append("Please add some songs !\n");
+        Display.append(" your song add !\n");
         return;
     }
-
     Song1 song = (Song1) mySong.backElement();
     if (song != null) {
         String title = song.getSong();
@@ -370,6 +378,7 @@ public class MusicGUI extends javax.swing.JFrame {
         }
         playlistManager.add(title);
         Display.append("Song " + title + " added to " + genre + " playlist\n");
+      
     }
     }//GEN-LAST:event_addplaylistActionPerformed
 
@@ -390,31 +399,62 @@ public class MusicGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_AllsongActionPerformed
 
     private void search3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search3ActionPerformed
-    int search=Integer.parseInt(JOptionPane.showInputDialog(null,"Enter the position of the song"));
-       Display.append(pM1.get(search).toString()+"\n");
-       if (pM1.isEmpty()) {
-            Display.append("Jazz playlist is empty\n");
+        if (mySong.isEmpty()) {
+            Display.append("You have no songs in your playlist\n");
             return;
         }
         String song = "";
-        // get song title
+// get song title
         while (song != null && song.trim().length() == 0) {
             song = JOptionPane.showInputDialog(null, "Enter the title of the song: ");
         }
         if (song == null) {
             return; // canceled by user
-        }// search the song in jazz playlist
-        int index = pM1.search(song);
-        if (index == -1) {
-            Display.append("Song " + song + " not found in jazz playlist\n");
-        } else {
-            String found = pM1.get(index).toString();
-            Display.append("Found song " + found + " in jazz playlist" + "\n");
+        }// search the song in all songs playlist
+        ArrayList<Object> allSongs = mySong.getAsList();
+        Song1 found = null;
+        for (int i = 0; i < allSongs.size(); i++) {
+            Song1 current = (Song1) allSongs.get(i);
+            if (current.getSong().equals(song)) {
+                found = current;
+                break;
+            }
         }
+        if (found == null) {
+            Display.append("Song " + song + " not found in your playlist\n");
+        } else {
+            Display.append("Found song " + found.getSong() + " (genre: " + found.getGenre() + ")" + "\n");
+        }
+
     }//GEN-LAST:event_search3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      
+      String song = "";
+        String genre = "";
+        // get song title
+        while (song != null && song.trim().length() == 0) {
+            song = JOptionPane.showInputDialog(null, "Enter the Song ");
+        }
+        if (song == null) {
+            return; // canceled by user
+        }// get genre
+        while (genre != null && !genre.equals("1") && !genre.equals("2")) {
+            genre = JOptionPane.showInputDialog(null, "Enter the Genre (1- jazz 2-classic )");
+        }
+        if (genre == null) {
+            return; // canceled by user
+        }// set genre
+        if (genre.equals("1")) {
+            genre = "jazz";
+        } else {
+            genre = "classic";
+        }
+        // add the song to songs playlist
+        Song1 myS = new Song1();
+        myS.setSong(song);
+        myS.setGenre(genre);
+        mySong.enqueue(myS);
+        Display.append("Song: " + song + " Genre: " + genre + "\n");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -463,6 +503,7 @@ public class MusicGUI extends javax.swing.JFrame {
     private javax.swing.JButton Search1;
     private javax.swing.JButton addplaylist;
     private javax.swing.JButton jButton1;
+    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
